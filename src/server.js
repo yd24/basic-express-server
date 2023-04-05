@@ -1,3 +1,5 @@
+'use strict';
+
 const express = require('express');
 const cors = require('cors');
 const validator = require('./middleware/validator.js');
@@ -18,6 +20,12 @@ app.get('/person', validator, (request, response, next) => {
 app.use('*', error404);
 app.use(error500);
 
+module.exports = {
+    app,
+    start: (port) => app.listen(port, () => {
+        console.log(`Listening on port ${port}`);
+    }),
+};
 module.exports = {
     app,
     start: (port) => app.listen(port, () => {
