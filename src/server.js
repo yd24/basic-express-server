@@ -14,18 +14,12 @@ app.use(logger);
 
 app.get('/person', validator, (request, response, next) => {
     let nameObj = {name: request.query.name};
-    response.json(nameObj);
+    response.status(200).json(nameObj);
 });
 
 app.use('*', error404);
 app.use(error500);
 
-module.exports = {
-    app,
-    start: (port) => app.listen(port, () => {
-        console.log(`Listening on port ${port}`);
-    }),
-};
 module.exports = {
     app,
     start: (port) => app.listen(port, () => {

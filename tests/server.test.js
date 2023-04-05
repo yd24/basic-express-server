@@ -11,6 +11,11 @@ describe('Testing the express server', () => {
         expect(resp.body).toEqual(expectedObj);
     });
 
+    test('If query string has name, should respond with status code 200', async() => {
+        let resp = await request.get('/person?name=John');
+        expect(resp.status).toEqual(200);
+    });
+
     test('Should return 404 on a bad route', async() => {
         let resp = await request.get('/someone');
         expect(resp.status).toEqual(404);
